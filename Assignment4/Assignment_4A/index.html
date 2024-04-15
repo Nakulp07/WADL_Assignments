@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>4</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+        }
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+        }
+        #top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        #right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>    
+<body>
+
+<div data-role="page">
+    <div data-role="content">
+        <div id="container">
+            <img id="image" src="https://images-eds-ssl.xboxlive.com/image?url=rOOPPWX9ohGfLksSzq1Wig8iTZ05uPbeb.DpV4tdbbbWNm1XXu8uEEIOyHxIQzbkg6QV19S8ccQ3rJJvQNmSUjWGPrJ2xdsBXB0tu3QXTYir1QqCQaFq6boVafipW8dNYmXgbqOR2.PoENWIhB0PYahWrh5hGXnIZ.CXDPtZ_PNZawbC0Kp2ZHjvgMiONF4hvxv6cWCDbO3MX2YKmsdTFJSWe1yynb8kgGfhhqhpSrrfuBeuuHFr3FpVuAqgPnCILkISo0y2Jrgnpp7QqSYq0ipp8Zm5Uuf9n7O5469Fo0aP0ImfNqt1JQltoVNudk0N&format=source" alt="Image">
+            <div id="top" class="arrow">&#9650;</div>
+            <div id="bottom" class="arrow">&#9660;</div>
+            <div id="left" class="arrow">&#9668;</div>
+            <div id="right" class="arrow">&#9658;</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.arrow').click(function() {
+            var direction = $(this).attr('id'); 
+            moveImage(direction);
+        });
+    });
+
+    function moveImage(direction) {
+        var image = $('#image');
+        var currentPosition = image.position();
+        var containerWidth = $('#container').width();
+        var containerHeight = $('#container').height();
+        var imageWidth = image.width();
+        var imageHeight = image.height();
+
+        switch (direction) {
+            case 'right':
+                image.css('transform','translate(50px,0px)');
+                break;
+            case 'left':
+                image.css('transform','translate(-50px,0px)'); 
+                break;
+            case 'top':
+                image.css('transform','translate(0px,-50px)');
+                break;
+            case 'bottom':
+                image.css('transform','translate(0px,50px)');
+                break;
+        }
+    }
+</script>
+
+</body>
+</html>
